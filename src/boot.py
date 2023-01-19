@@ -1,13 +1,12 @@
 # some parts of the startup may be a bit sloppy and can/will be improved later on!
-from time import sleep
 
 from hcsr04 import HCSR04
 from umqttsimple import MQTTClient
-from wifi_manager import WifiManager
+from src.wifi_manager import WifiManager
 import settings
 from ubinascii import hexlify
 from machine import unique_id
-from machine import Pin, ADC, SoftI2C, reset
+from machine import Pin, ADC, SoftI2C
 import ssd1306
 
 wm = WifiManager(ssid=settings.ssid, password=settings.password)
