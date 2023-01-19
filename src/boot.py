@@ -2,7 +2,7 @@
 
 from hcsr04 import HCSR04
 from umqttsimple import MQTTClient
-from src.wifi_manager import WifiManager
+from wifi_manager import WifiManager
 import settings
 from ubinascii import hexlify
 from machine import unique_id
