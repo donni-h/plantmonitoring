@@ -32,7 +32,7 @@ def publish_data():
         display.fill(0)
         if not wm.is_connected():
             reconnect()
-
+        display.fill(0)
         display.text("publishing...", 0, 0)
         display.show()
         current_moisture = get_moisture_percent(moisture_sensor.read_u16())

@@ -36,8 +36,14 @@ line_height = ${line}
 pot_height_in_mm = ${pot_height}
 client_name = '${name}'
 refresh_interval_in_seconds = ${refresh} \n" > ${BASH_SOURCE%/*}/src/settings.py
-echo"Coolio. Will now try to upload project to the device..."
+echo "Coolio. Will now try to upload project to the device..."
 read -p "press enter to continue"
-ampy --port /dev/ttyUSB0 put ${BASH_SOURCE%/*}/src
+ampy --port /dev/ttyUSB0 put ${BASH_SOURCE%/*}/src/boot.py
+ampy --port /dev/ttyUSB0 put ${BASH_SOURCE%/*}/src/main.py
+ampy --port /dev/ttyUSB0 put ${BASH_SOURCE%/*}/src/settings.py
+ampy --port /dev/ttyUSB0 put ${BASH_SOURCE%/*}/src/hcsr04.py
+ampy --port /dev/ttyUSB0 put ${BASH_SOURCE%/*}/src/ssd1306.py
+ampy --port /dev/ttyUSB0 put ${BASH_SOURCE%/*}/src/umqttsimple.py
+ampy --port /dev/ttyUSB0 put ${BASH_SOURCE%/*}/src/wifi_manager.py
 sleep 3
 echo "if everything worked, the device should start up now..."
