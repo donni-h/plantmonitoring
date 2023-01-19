@@ -40,7 +40,7 @@ def publish_data():
         try:
             client.publish(
                 settings.topic,
-                f"plants, identifier={identifier} height={current_height},moisture={current_moisture}"
+                f"plants,identifier={identifier} height={current_height},moisture={current_moisture}"
             )
             display.text("SUCCESS!", 0, line_height)
 
@@ -53,7 +53,7 @@ def publish_data():
             lock.release()
             client.disconnect()
             wm.disconnect()
-            sleep(40)
+            sleep(refresh_interval)
 
 
 def monitor():
@@ -63,6 +63,7 @@ def monitor():
     while True:
         lock.acquire()
         display.fill(0)
+        print(moisture_sensor.read_u16())
         current_moisture = get_moisture_percent(moisture_sensor.read_u16())
         current_height = round(distance_sensor.distance_mm() - settings.pot_height_in_mm, 2)
         display.text("soil moisture: ", 0, 0)
@@ -71,7 +72,7 @@ def monitor():
         display.text(f"{current_height / 10} cm", 0, 4 * line_height)
         display.show()
         lock.release()
-        sleep(3)
+        sleep(20)
 
 
 def setup_wifi():
@@ -169,3 +170,4 @@ def reconnect():
 
 initial_setup()
 monitor()
+
